@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <link rel="shortcut icon" href="/static/images/ai-camp-logo.png" type="image/x-icon">
+    <meta name="description" content="">
+
+    <title>results</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&subset=latin,cyrillic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,700&subset=latin,vietnamese,latin-ext">
+    <link rel="stylesheet" href="/static/tether/tether.min.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/puritym/css/style.css">
+    <link rel="stylesheet" href="/static/mobirise/css/mbr-additional.css" type="text/css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light mbr-navbar" id="ext_menu-0" data-rv-view="0" style="background-color: rgb(242, 242, 242);">
+        <div class="container">
+            <button class="navbar-toggler pull-right hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
+            <div class="hamburger-icon"></div>
+        </button>
+
+            <div class="clearfix"></div>
+            <div class="collapse navbar-toggleable-sm" id="exCollapsingNavbar2">
+                <span class="navbar-logo"><a href="https://www.ai-camp.org"><img src="/static/images/ai-camp-logo.png" alt="AI Camp"></a></span>
+                <span><a class="navbar-brand text-black" href="/">Mask Detector by AI Camp</a></span>
+
+                <ul class="nav navbar-nav pull-xs-right">
+                    <li class="nav-item"><a class="btn btn-success-outline btn-success" href="http://www.ai-camp.org">Join AI Camp</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav pull-xs-right">
+                    <li class="nav-item"><a class="nav-link" href="https://github.com/zikegcwk/aicamp">See our code at github</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="mbr-section mbr-section-nopadding mbr-after-navbar" id="msg-box4-2" data-rv-view="2" style="background-color: rgb(255, 255, 255); padding-top: 3rem; padding-bottom: 0rem;">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xs-12 col-lg-3 mbr-inner-padding text-xs-center mbr-table-cell-lg">
+                    <h3 class="mbr-section-title display-4">We found <strong><span style='text-transform: capitalize;'>{{labels}}!</span></strong></h3>
+
+                    {% if labels == 'no emotion' %}
+                    <div>We missed? See why below.</div>
+                    {% else %}
+                    <div class="lead"><em>with {{ confidences }} confidence.</em></div>
+                    {% endif %}
+
+                    <div class="mbr-section-btn">
+                        <a class="btn btn-lg btn-success display-5" href='#' id='seefood_button'>
+                            <form method=post enctype=multipart/form-data action="/">
+                                <input id="seefood_input_field" name="file" type="file" onchange="this.form.submit();" hidden/>
+                            </form>
+                            <span class="mbri-camera mbr-iconfont mbr-iconfont-btn" style="font-size: 40px;"></span>Try with another photo
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-lg-9 mbr-table-cell-lg image-size" style="width: 70%;">
+                    <div class="mbr-figure"><img src="{{ url_for('files', filename=filename) }}"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mbr-section mbr-section-nopadding" id="msg-box4-i" data-rv-view="5" style="background-color: rgb(255, 255, 255); padding-top: 1.5rem; padding-bottom: 1.5rem;">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xs-12 col-lg-3 mbr-inner-padding text-xs-center mbr-table-cell-lg">
+                    <h3 class="mbr-section-title display-4">Why do we sometimes we miss?</h3>
+
+                    <div class="lead">
+                        <p>Given just three weeks, we only had time to train our model with 2484 labeled images. If we have more time, we can improve our model performance!&nbsp;</p>
+                    </div>
+
+                </div>
+                <div class="col-xs-12 col-lg-9 mbr-table-cell-lg image-size" style="width: 57%;">
+                    <div class="mbr-figure"><img src="/static/images/confusionmatrix.png"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mbr-section" id="msg-box3-j" data-rv-view="8" style="background-color: rgb(255, 248, 224); padding-top: 9rem; padding-bottom: 9rem;">
+
+        <div class="container">
+            <div class="row text-xs-center">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <h2 class="mbr-section-title display-3">Learn AI in three weeks with zero coding experience.</h2>
+
+
+                    <div class="lead">
+                        <p>AI Camp teaches AI, how to learn, and how to pick a major/career for mid and high school students.</p>
+                    </div>
+                    <div><a class="btn btn-lg btn-success-outline btn-success" href="http://www.ai-camp.org" target="_blank">Join AI Camp</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="/static/web/assets/jquery/jquery.min.js"></script>
+    <script src="/static/tether/tether.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/smooth-scroll/smooth-scroll.js"></script>
+    <script src="/static/puritym/js/script.js"></script>
+    <script>
+        // added to get upload with a button working
+        document.getElementById('seefood_button').addEventListener('click', openDialog);
+
+        function openDialog() {
+            document.getElementById('seefood_input_field').click();
+        }
+    </script>
+    <script>
+        function goBack() {
+          window.history.back();
+        }
+    </script>
+
+</body>
+
+</html>
